@@ -338,7 +338,39 @@ void insertAtTail(int data) {
         current_node->next = new_node;
     }
 }
+---------------------------------------------------------------------------------------------------------------
+What if we want to insert a node in a specific index? How do we do that?
 
+Logic:
+    if (indexProvided is greater than list.length() OR indexProvided is less than 0th index):
+        - then user has obviously entered wrong index, so we throw err.
+    
+    else if (index == 0):
+        - then user want to add node at head, so we can use the insertAtHead() logic right?
+    
+    else if (index == list.length()):
+        - then user want to add node at tail, so we can use the insertAtTail() logic.
+    
+    else user is trying to add the data between head and tail so:
+        - make a current pointer from the starting node and traverse till the index
+        - the first link the newly node to the current pointer's next node;
+        - link the current node to new node;
+    
+
+pseudo code:
+
+void insertAt(int data, int index) {
+    if(index > this->length() || index < 0){
+        cout << "Invalid index" << endl;
+    } else if(index == 0) {
+        - Then the user want to add the data at 0th index
+        - insertAtHead(data);
+    } else if (index == this->length()) {
+        
+    } else {
+
+    }
+}
 
 
 */
