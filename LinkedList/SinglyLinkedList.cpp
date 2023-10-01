@@ -107,12 +107,19 @@ class LinkedList {
 
     //delete data at begin
     int deleteAtHead() {
+        int deletedData;
         if(this->isEmpty()) {
             cout << "\nList is already empty" << endl;
+        } else if(this->length() == 1) {
+            Node *currentNode = startingNode;
+            deletedData = currentNode->data;
+            startingNode = NULL;
+            delete currentNode;
+            return deletedData;
         } else {
             Node *currentNode = startingNode;
             startingNode = startingNode->nextNode;
-            int deletedData = currentNode->data;
+            deletedData = currentNode->data;
             delete currentNode;
             return deletedData;
         }
@@ -128,23 +135,46 @@ class LinkedList {
             deletedData = currentNode->data;
             startingNode = NULL;
             delete currentNode;
+            return deletedData;
         } else {
             Node *currentNode = startingNode;
             while (currentNode->nextNode->nextNode != NULL)
             {
                 currentNode = currentNode->nextNode;
             }
-            
             deletedData = currentNode->nextNode->data;
             currentNode->nextNode = NULL;
             delete currentNode->nextNode;
+            return deletedData;
         }
-        return deletedData;
     }
 
     //delete data/node at provided index
     int deleteAt(int index = 0) {
-
+        int deletedData;
+        // cout << this->length() << endl;
+        if(this->isEmpty()) {
+            cout << "\nList is already empty" << endl;
+        } else if(index > this->length() - 1 || index < 0){
+            cout << "\nInvalid index" << endl;
+        } else if(index == 0) {
+            deletedData = deleteAtHead();
+            return deletedData;
+        } else if(index == this->length() - 1) {
+            deletedData = deleteAtTail();
+            return deletedData;
+        } else {
+            Node *currentNode = startingNode;
+            for (int i = 0; i < index - 1; i++)
+            {
+                currentNode = currentNode->nextNode;
+            }
+            Node *deletingNode = currentNode->nextNode;
+            currentNode->nextNode = currentNode->nextNode->nextNode;
+            deletedData = deletingNode->data;
+            delete deletingNode;
+            return deletedData;
+        }
     }
 
 
@@ -171,7 +201,7 @@ class LinkedList {
 int main() {
 
     LinkedList list;
-    
+
     list.print();
 
     return 0;
