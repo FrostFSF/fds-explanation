@@ -265,7 +265,7 @@ class LinkedList {
 
 };
 
-//now we want is we need to insert at Head
+now we want is we need to insert at Head
 
 for this first we need:
     - To check if the list is empty or not? if Yes:
@@ -290,8 +290,15 @@ void insertAtHead() {
 
 code:
 
-void insertAtHead() {
+void insertAtHead(int data) {
+    Node *new_node = new Node(data);
 
+    if(this->isEmpty()) {
+        head = new_node;
+    } else {
+        new_node->nextNode = head;
+        head = new_node;
+    }
 }
 
 
