@@ -226,7 +226,7 @@ Here A node represent a block of data
 |     DATA     |  address of new/next node |
  ------------------------------------------
 
-
+---------------------------------------------------------------------------------------------------------------
 1) To repesent a node we need a 'DATA' and a self referencing 'POINTER'
 
 class Node {
@@ -251,7 +251,7 @@ class Node {
     }
 };
 
-
+---------------------------------------------------------------------------------------------------------------
 After constructing the Node we need to contruct the linked-list now
 
 class LinkedList {
@@ -265,6 +265,7 @@ class LinkedList {
 
 };
 
+---------------------------------------------------------------------------------------------------------------
 now we want is we need to insert at Head
 
 for this first we need:
@@ -281,7 +282,7 @@ void insertAtHead() {
     create new node;
 
     if(list is empty) {
-        point head towards newly created node;
+        - point head towards newly created node;
     } else {
         - first link newly created node towards head;
         - now change head to this newly created node;
@@ -301,6 +302,42 @@ void insertAtHead(int data) {
     }
 }
 
+---------------------------------------------------------------------------------------------------------------
+Now insert at tail
+Since we want to add the node to end we have to traverse
+the list till we reach to end then we can add the newly created node
+
+psuedo code:
+
+void insertAtTail(int data) {
+    Create a node first;
+
+    if(list is empty) {
+        - point the head towards newly created node;
+    } else {
+        - traverse till last node
+        - then add node
+    }
+}
+
+
+code:
+
+void insertAtTail(int data) {
+    Node *new_node = new Node(data);
+
+    if(this->isEmpty()) {
+        head = new_node;
+    } else {
+        Node *current_node = head;
+
+        while(current_node->nextNode != NULL) {
+            current_node = current_node->nextNode;
+        }
+
+        current_node->next = new_node;
+    }
+}
 
 
 
